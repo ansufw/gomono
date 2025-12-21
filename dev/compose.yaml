@@ -1,0 +1,20 @@
+
+services:  
+  db:
+    container_name: pg_container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: p@sw0rd!
+      POSTGRES_DB: test_db
+    volumes:
+      - ./postgres-data:/var/lib/postgresql
+    ports:
+      - "5400:5432"
+  whodb:
+    image: clidey/whodb
+    ports:
+      - "8080:8080"
+    environment:
+      - WHODB_LOG_LEVEL=debug

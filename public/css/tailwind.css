@@ -1,0 +1,4 @@
+/* file: `templates/static/css/tailwind.css` */
+@import "tailwindcss";
+@source "../views/**/*.templ";
+
