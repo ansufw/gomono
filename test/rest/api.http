@@ -1,0 +1,10 @@
+GET http://127.0.0.1:4000/api
+
+GET http://127.0.0.1:4000/api/users
+X-MyHeader: test-header
+X-API-VERSION: 1.0
+
+### Test with pagination
+GET http://127.0.0.1:4000/api/users?limit=5&offset=0
+X-MyHeader: test-header
+X-API-VERSION: 1.0

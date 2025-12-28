@@ -4,9 +4,15 @@ Gomono is boilerplate for fullstack web application build with Golang Fiber and 
 
 ### Preparation
 
+- Golang
 - download tailwind, `make tw`
-- install templ (see `https://templ.guide/quick-start/installation`)
-- install air, `go install github.com/air-verse/air@latest`
+- templ (see `https://templ.guide/quick-start/installation`)
+- dbmate (see `https://github.com/amacneil/dbmate`)
+- sqlc (see `https://docs.sqlc.dev/`)
+- postgresql (using the latest version, `https://formulae.brew.sh/formula/postgresql@18`)
+- air, `go install github.com/air-verse/air@latest`
+- httpyac for testing, https://httpyac.github.io/
+- [swag](https://github.com/gofiber/swagger), `swag init -g ./cmd/main.go -d ./docs/api`
 
 ### Start
 

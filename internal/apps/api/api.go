@@ -1,22 +1,24 @@
 package api
 
 import (
-	"log"
+	"context"
 
+	"github.com/ansufw/gomono/internal/config"
+	"github.com/ansufw/gomono/internal/infrastructure/database/pg"
 	"github.com/gofiber/fiber/v2"
 )
 
-func App() (*fiber.App, error) {
+func App(ctx context.Context, cfg *config.Config, db *pg.PG) (*fiber.App, error) {
 	app := fiber.New()
 
+	h := NewHandler(db)
+
 	Middleware(app)
-	Route(app)
+	Route(app, h)
 
 	return app, nil
 }
 
 func Run(apiApp *fiber.App) {
-	if err := apiApp.Listen(":4444"); err != nil {
-		log.Fatalf("error listen to port 4444: %v", err)
-	}
+	// This function is no longer needed as we run from main app
 }

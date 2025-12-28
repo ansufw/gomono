@@ -5,7 +5,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func Home(c *fiber.Ctx) error {
-	c.Set("Content-Type", "text/html")
-	return pages.Home().Render(c.Context(), c.Response().BodyWriter())
+func Home() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+
+		c.Set("Content-Type", "text/html")
+		return pages.Home().Render(c.Context(), c.Response().BodyWriter())
+	}
 }
