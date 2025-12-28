@@ -10,5 +10,5 @@ func Route(app *fiber.App) {
 
 	app.Get("/", handlers.Home())
 	app.Get("/login", handlers.Login())
-	app.Post("/login", handlers.Login())
+	// app.Post("/login", handlers.Login())
 }

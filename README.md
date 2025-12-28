@@ -14,6 +14,12 @@ Gomono is boilerplate for fullstack web application build with Golang Fiber and 
 - httpyac for testing, https://httpyac.github.io/
 - [swag](https://github.com/gofiber/swagger), `swag init -g ./cmd/main.go -d ./docs/api`
 
-### Start
+### Getting Started
 
-- run `air`
+#### Database
+
+for local development, follow these steps
+
+- in the folder `dev`, run `docker compose up`
+- open gui via `http://localhost:8080/` in the web browser
+- paste the DATABASE_URL value from `.env` in the `Host Name` field but change the hostname value itself with `db`

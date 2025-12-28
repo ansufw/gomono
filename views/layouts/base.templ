@@ -2,7 +2,11 @@ package layouts
 
 import (
     "github.com/ansufw/gomono/views/partials"
+	"slices"
 )
+
+var noHeader = []string{"login"}
+var noFooter = []string{"login"}
 
 templ Base(title string) {
 	<!DOCTYPE html>
@@ -16,12 +20,15 @@ templ Base(title string) {
 	</head>
 	<body>
 		<div class="app">
-			@partials.Header()
-			<h1>params: {title}</h1>
+			if slices.Contains(noHeader, title) {
+				@partials.Header()
+			}
 			<main class="main-content">
 				{ children... }
 			</main>
-			@partials.Footer()
+			if slices.Contains(noHeader, title) {
+				@partials.Footer()
+			}
 		</div>
 		<script src="/static/js/main.js"></script>
 	</body>
