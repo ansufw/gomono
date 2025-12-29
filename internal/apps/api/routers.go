@@ -21,4 +21,7 @@ func Route(app *fiber.App, h *Handler) {
 
 	api.Get("/users", h.ListUsers)
 
+	// Authentication routes
+	api.Post("/login", h.Login)
+
 }

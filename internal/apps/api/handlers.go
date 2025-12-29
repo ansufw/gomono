@@ -69,3 +69,40 @@ func (h *Handler) ListUsers(c *fiber.Ctx) error {
 
 	return c.JSON(payload)
 }
+
+// Login handles user authentication
+// @Summary      User login
+// @Description  Authenticate a user with email and password
+// @Tags         auth
+// @Accept       json
+// @Produce      json
+// @Param        email         formData    string    true  "User email"
+// @Param        password      formData    string    true  "User password"
+// @Success      200           {object}    pkg.Payload{message=string}
+// @Failure      401           {object}    pkg.Payload
+// @Failure      500           {object}    pkg.Payload
+// @Router       /api/login [post]
+func (h *Handler) Login(c *fiber.Ctx) error {
+	// Get form data
+	email := c.FormValue("email")
+	password := c.FormValue("password")
+
+	// TODO: Implement actual authentication logic
+	// For now, just check if email and password are provided
+	if email == "" || password == "" {
+		payload := pkg.Payload{
+			Error:   true,
+			Message: "Email and password are required",
+		}
+		return c.Status(fiber.StatusUnauthorized).JSON(payload)
+	}
+
+	// TODO: Validate credentials against database
+	// For now, just return a success message
+	payload := pkg.Payload{
+		Error:   false,
+		Message: "Login successful",
+	}
+
+	return c.JSON(payload)
+}

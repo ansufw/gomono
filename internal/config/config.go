@@ -34,16 +34,38 @@ func LoadConfig() (*Config, error) {
 		fmt.Println("no .env file found")
 	}
 
-	viper.AutomaticEnv()
-	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-
+	// Set up command line flags first
 	pflag.Int("api.port", 8080, "Api port")
 	pflag.Parse()
 
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	viper.AutomaticEnv()
+
+	// Explicitly bind environment variables
+	viper.BindEnv("api.port", "API_PORT")
+	viper.BindEnv("web.port", "WEB_PORT")
+	viper.BindEnv("api.host", "API_HOST")
+	viper.BindEnv("web.host", "WEB_HOST")
+
+	// Bind pflags after environment variables to give env vars higher priority
 	viper.BindPFlags(pflag.CommandLine)
 
 	if err := viper.Unmarshal(&cfg); err != nil {
 		return nil, err
+	}
+
+	// FIX: Override with environment variables if they exist
+	if apiPort := viper.GetString("API_PORT"); apiPort != "" {
+		cfg.Api.Port = viper.GetInt("API_PORT")
+	}
+	if webPort := viper.GetString("WEB_PORT"); webPort != "" {
+		cfg.Web.Port = viper.GetInt("WEB_PORT")
+	}
+	if apiHost := viper.GetString("API_HOST"); apiHost != "" {
+		cfg.Api.Host = apiHost
+	}
+	if webHost := viper.GetString("WEB_HOST"); webHost != "" {
+		cfg.Web.Host = webHost
 	}
 
 	return &cfg, nil

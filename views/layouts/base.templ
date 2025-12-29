@@ -8,29 +8,32 @@ import (
 var noHeader = []string{"login"}
 var noFooter = []string{"login"}
 
-templ Base(title string) {
+
+
+templ Base(label string) {
 	<!DOCTYPE html>
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>{ title }</title>
+		<meta name="htmx-config" content='{"selfRequestsOnly": false}' />
+		<title>{ label }</title>
 		<link rel="stylesheet" href="/static/css/global.css"/>
-
+		<link rel="icon" type="image/x-icon" href="/static/img/favicon.ico"/>
 	</head>
 	<body>
 		<div class="app">
-			if slices.Contains(noHeader, title) {
+			if slices.Contains(noHeader, label) {
 				@partials.Header()
 			}
 			<main class="main-content">
 				{ children... }
 			</main>
-			if slices.Contains(noHeader, title) {
+			if slices.Contains(noHeader, label) {
 				@partials.Footer()
 			}
 		</div>
-		<script src="/static/js/main.js"></script>
+		<script src="/static/js/htmx.min.js"></script>
 	</body>
 	</html>
 }

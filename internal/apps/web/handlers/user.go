@@ -5,10 +5,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func Login() fiber.Handler {
-	return func(c *fiber.Ctx) error {
+func (h *Handler) Login(c *fiber.Ctx) error {
 
-		c.Set("Content-Type", "text/html")
-		return pages.Login().Render(c.Context(), c.Response().BodyWriter())
-	}
+	c.Set("Content-Type", "text/html")
+	// templData := h.ctxTempl.Value("template-data").(*data.TemplGo)
+	return pages.Login().Render(c.Context(), c.Response().BodyWriter())
 }
