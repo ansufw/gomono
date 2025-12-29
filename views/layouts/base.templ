@@ -5,8 +5,8 @@ import (
 	"slices"
 )
 
-var noHeader = []string{"login"}
-var noFooter = []string{"login"}
+var noHeader = []string{}
+var noFooter = []string{}
 
 
 
@@ -23,13 +23,13 @@ templ Base(label string) {
 	</head>
 	<body>
 		<div class="app">
-			if slices.Contains(noHeader, label) {
+			if !slices.Contains(noHeader, label) {
 				@partials.Header()
 			}
 			<main class="main-content">
 				{ children... }
 			</main>
-			if slices.Contains(noHeader, label) {
+			if !slices.Contains(noHeader, label) {
 				@partials.Footer()
 			}
 		</div>
