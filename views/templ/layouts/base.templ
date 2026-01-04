@@ -1,12 +1,13 @@
 package layouts
 
 import (
-    "github.com/ansufw/gomono/views/partials"
+    "github.com/ansufw/gomono/views/templ/components"
+    "github.com/ansufw/gomono/views/templ/partials"
 	"slices"
 )
 
-var noHeader = []string{}
-var noFooter = []string{}
+var noHeader = []string{""}
+var noFooter = []string{""}
 
 
 
@@ -26,9 +27,10 @@ templ Base(label string) {
 			if !slices.Contains(noHeader, label) {
 				@partials.Header()
 			}
-			<main class="main-content">
+			<main class="h-[calc(100vh-64px)]">
 				{ children... }
 			</main>
+			@components.Button("Button Tes")
 			if !slices.Contains(noHeader, label) {
 				@partials.Footer()
 			}

@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/ansufw/gomono/views/pages"
+	"github.com/ansufw/gomono/views/templ/pages"
 	"github.com/gofiber/fiber/v2"
 )
 
